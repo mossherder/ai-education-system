@@ -1,27 +1,26 @@
 const tfSystemCore = {
-  controller: appStateCore.stateController,
-
   initialize: function() {
     return null;
   },
 
   createEquation: function(a, b, operator) {
-    tfSystemCore.controller.equationController.setEquation(a, b, operator);
+    appStateCore.stateController.equationController.setEquation(a, b, operator);
   },
 
   showSolution: function() {
-    tfSystemCore.controller.equationController.showSolution();
+    appStateCore.stateController.equationController.showSolution();
   },
 
   showGraphics: function() {
-    tfSystemCore.controller.graphicsController.showGraphics();
+    appStateCore.stateController.graphicsController.showGraphics();
   },
 
   showText: function() {
-    tfSystemCore.controller.textController.showText();
+    appStateCore.stateController.textController.showText();
   },
 
   pointPassBack: function(points) {
     // pass current points back to algorithm
+    sessionStorage.setItem('system-points', points.toString());
   }
 }
