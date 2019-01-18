@@ -9,12 +9,14 @@ const appStateUI = {
   equationA: 'equation-A',
   equationB: 'equation-B',
   equationC: 'equation-C',
+  equationD: 'equation-D',
+  equationE: 'equation-E',
   textA: 'text-A',
   textB: 'text-B',
   textC: 'text-C',
 
   initialize: function() {
-    const mainDiv = $(appStateUI.mainDiv);
+    let mainDiv = $('#' + appStateUI.mainDiv);
     createGraphicsPlaceholder().appendTo(mainDiv);
     createEquationPlaceholder().appendTo(mainDiv);
     createTextPlaceholder().appendTo(mainDiv);
@@ -29,7 +31,7 @@ const appStateUI = {
       const placeholderC = $('<div/>', {
         id: appStateUI.graphicsC
       });
-      const newDiv = $('<div/>',{
+      let newDiv = $('<div/>',{
         id: appStateUI.mainGraphics,
       });
       newDiv.append(
@@ -50,13 +52,21 @@ const appStateUI = {
       const placeholderC = $('<div/>', {
         id: appStateUI.equationC
       });
-      const newDiv = $('<div/>',{
+      const placeholderD = $('<div/>', {
+        id: appStateUI.equationD
+      });
+      const placeholderE = $('<div/>', {
+        id: appStateUI.equationE
+      });
+      let newDiv = $('<div/>',{
         id: appStateUI.mainEquation,
       });
       newDiv.append(
         placeholderA, 
         placeholderB, 
-        placeholderC
+        placeholderC,
+        placeholderD,
+        placeholderE,
         );
       return newDiv;
     }
@@ -71,7 +81,7 @@ const appStateUI = {
       const placeholderC = $('<div/>', {
         id: appStateUI.textC
       });
-      const newDiv = $('<div/>',{
+      let newDiv = $('<div/>',{
         id: appStateUI.mainText,
       });
       newDiv.append(
@@ -82,24 +92,39 @@ const appStateUI = {
       return newDiv;
     }
   },
-
-  updateGraphics: function(array) {
-    $(appStateUI.graphicsA).attr('src', array[0]);
-    $(appStateUI.graphicsB).attr('src', array[1]);
-    $(appStateUI.graphicsC).attr('src', array[2]);
-  },
   
   updateEquation: function(array) {
-    $(appStateUI.equationA).attr('src', array[0]);
-    $(appStateUI.equationB).attr('src', array[1]);
-    $(appStateUI.equationC).attr('src', array[2]);
+    $('#' + appStateUI.equationA).text(array[0]);
+    $('#' + appStateUI.equationB).text(array[1]);
+    $('#' + appStateUI.equationC).text(array[2]);
+    $('#' + appStateUI.equationD).text('=');
+    $('#' + appStateUI.equationE).hide();
+    $('#' + appStateUI.equationE).text(array[3]);
   },
 
-  updateText: function(array) {
-    $(appStateUI.textA).attr('src', array[0]);
-    $(appStateUI.textB).attr('src', array[1]);
-    $(appStateUI.textC).attr('src', array[2]);
+  showSolution: function() {
+    $('#' + appStateUI.equationE).show();
   },
 
+  updateGraphics: function() {
+    const array = [
+      $('#' + appStateUI.equationA).text(),
+      $('#' + appStateUI.equationB).text(),
+      $('#' + appStateUI.equationC).text()
+    ];
+    $('#' + appStateUI.graphicsA).attr('src', array[0]);
+    $('#' + appStateUI.graphicsB).attr('src', array[1]);
+    $('#' + appStateUI.graphicsC).attr('src', array[2]);
+  },
 
+  updateText: function() {
+    const array = [
+      $('#' + appStateUI.equationA).text(),
+      $('#' + appStateUI.equationB).text(),
+      $('#' + appStateUI.equationC).text()
+    ];
+    $('#' + appStateUI.textA).attr('src', array[0]);
+    $('#' + appStateUI.textB).attr('src', array[1]);
+    $('#' + appStateUI.textC).attr('src', array[2]);
+  },
 }
