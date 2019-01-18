@@ -1,4 +1,4 @@
 $(document).ready(function() {
-  initializeState();
-  initializeTfSystem();
+  appStateCore.initialize();
+  tfSystemCore.initialize();
 });
