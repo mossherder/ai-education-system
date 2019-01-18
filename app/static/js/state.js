@@ -1,8 +1,8 @@
 const appStateCore = {
   initialize: function() {
     appStateUI.initialize();
+    window.setInterval(1000, appStateCore.pointsFlow.updatePoints);
   },
-
   stateController: {
     graphicsController: {
       showGraphics: function() {
@@ -11,37 +11,33 @@ const appStateCore = {
     },
     equationController: {
         setEquation: function(a,b,c) {
-          let operator = null;
-          if (c === 0) {
-            operator = operatorCore.add;
+          const result = operatorCore.createOperator(Number(a), Number(b), c);
+          if (result === false) {
+            return Error('Unable to operate input values');
           }
-          if (c === 1) {
-            operator = operatorCore.subtract;
-          }
-          const result = operator(Number(a), Number(b))
           const operatorSymbol = result.symbol;
           const solution = result.solution;
+          const complexity = result.complexity;
           const displayArray = [a, operatorSymbol, b, solution]
+          pointsCore.pointsUpdater.complexity(a, complexity, b);
           appStateUI.updateEquation(displayArray);
+          timerCore.equationTimer.startRestart();
+          return true;
         },
         showSolution: function() {
           appStateUI.showSolution();
         }
-      }
-    },
+      },
     textController: {
       showText: function() {
         appStateUI.showText();
       }
     },
-    pointsFlow: {
-      updatePoints: function() {
-        const points = gatherCurrentPoints();
-        tfSystemCore.pointPassBack(points);
-      },
-      gatherCurrentPoints: function() {
-        // Does the system decide points or the algorithm??
-        return 0;
-      }
+  },
+  pointsFlow: {
+    updatePoints: function() {
+      const points = pointsCore.getCurrentPoints();
+      tfSystemCore.pointPassBack(points);
     }
-  }
+  },
+}
