@@ -1,0 +1,6 @@
+const tfSystemCore = {
+  initialize: function() {
+
+  },
+  
+}
