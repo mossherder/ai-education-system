@@ -6,6 +6,7 @@ advances in artificial intelligence for optimizing teaching methods.
 #### Underlying hypotheses:
 
 * The teacher-student process can be sufficiently gamified for AI modeling
+* Education can be simplified to a decoding/encoding process which defines comprehension
 
 ## Core system specifications
 
@@ -32,3 +33,12 @@ assess to some degree of certainty where along the curricula the user is current
 The system should be able to have some adaptability in its algorithm adaptation. As the system grows, we may need to use a 
 different algorithm, we may need the system to choose an different algorithm based on user learning speed (for instance),
 or we may need to allow the system to choose multiple algorithms to find optimal teaching.
+
+### Controller Interface
+
+The system will have an interface for allowing a curricula to define a controller for the system to use. This will in essence
+define the decoding/encoding requirements and any periferal uses.
+
+Though a subsystem will be a generic interface that should handle many controllers, the controller layers that could be abstractions
+of same-category curricula and then subsequent, more well-defined controllers for the specific curricula, will not be a part of the
+core subsystem.
