@@ -5,6 +5,15 @@ __pycache__/
 *.pyc
 *.exe
 
+# Local
+Scripts/
+Lib/
+tcl/
+Include/
+package-lock.json
+pip-selfcheck.json
+
+
 #Database
 *.db
 
