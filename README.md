@@ -1,4 +1,4 @@
-# AI Driven Education Nucleus
+# AI Driven Education Core
 
 This project is an attempt to create a first-generation education system utilizing 
 advances in artificial intelligence for optimizing teaching methods.
